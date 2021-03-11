@@ -1,0 +1,117 @@
+.kirby {
+    position: relative;
+    &__body {
+        @include circle-mixin(500px, $primary);
+        &__face {
+            @extend %absolute;
+            width: 150px;
+            height: 210px;
+            top: calc(50% - (300px/2));
+            left: calc(50% - (150px/2));
+            &__eye {
+                @extend %absolute;
+                width: 40px;
+                height: 150px;
+                background-color: black;
+                border-radius: 50%;
+                top: 0;
+                &--right {
+                    right: 0;
+                }
+                &--left {
+                    left: 0;
+                }
+                &::after,
+                &::before {
+                    content: '';
+                }
+                &:before {
+                    @extend %absolute;
+                    width: 20px;
+                    height: 60px;
+                    background-color: white;
+                    box-shadow: 0px 0px 30px 0px white;
+                    border-radius: 50%;
+                    top: 5px;
+                    left: calc(50% - (10px/2));
+                }
+                &:after {
+                    @extend %absolute;
+                    width: 20px;
+                    height: 60px;
+                    background: linear-gradient(180deg, black 0%, blue 136%);
+                    border-radius: 0 0 50% 50%;
+                    bottom: 15px;
+                    left: calc(50% - (20px/2));
+                }
+            }
+            &__cheek {
+                @extend %absolute;
+                width: 90px;
+                height: 30px;
+                background-color: rgba($cheek-color, 0.65);
+                box-shadow: inset 0px 0px 30px 0px $primary;
+                border-radius: 50%;
+                top: 143px;
+                &--right {
+                    right: -100px;
+                }
+                &--left {
+                    left: -100px;
+                }
+            }
+            &__mouth {
+                @extend %absolute;
+                margin: 0 auto;
+                width: 70px;
+                height: 50px;
+                background-color: lighten($secondary, 10%);
+                border-radius: 5% 5% 50% 50%;
+                bottom: 0;
+                left: calc(50% - (70px/2));
+                box-shadow: inset 0px 10px 20px -10px darken($secondary, 30%);
+            }
+        }
+    }
+    &__arm {
+        @extend %extremity;
+        width: 135px;
+        height: 180px;
+        border-radius: 50% 50% 0 0;
+        background-color: darken($primary, 5%);
+        top: 0;
+        &--right {
+            right: 0;
+            transform: rotateZ(45deg);
+        }
+        &--left {
+            left: 0;
+            transform: rotateZ(-45deg);
+        }
+    }
+    &__foot {
+        @extend %extremity;
+        width: 185px;
+        height: 230px;
+        border-radius: 0 0 50% 50%;
+        background-color: $secondary;
+        bottom: -50px;
+        &--right {
+            right: -50px;
+            transform: rotateZ(-45deg);
+        }
+        &--left {
+            left: -50px;
+            transform: rotateZ(45deg);
+        }
+    }
+}
+
+%extremity {
+    position: absolute;
+    z-index: -1;
+}
+
+%absolute {
+    position: absolute;
+}
